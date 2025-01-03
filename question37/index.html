@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate / Clone Rows via JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Duplicate / Clone Rows via JavaScript</h1>
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <select>
+                            <option>Select Product</option>
+                            <option>Product 1</option>
+                            <option>Product 2</option>
+                            <option>Product 3</option>
+                        </select>
+                    </td>
+                    <td><input type="text" placeholder="Enter Price"></td>
+                    <td><button class="delete-btn">🗑️</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="addRowBtn" class="add-btn">Add New</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Challenge Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      margin: 5px 0;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Asabeneh Yetayeh challenges in 2020</h1>
+    <h2>30DaysOfJavaScript Challenge</h2>
+    <ul>
+      <li>Python Challenge Done</li>
+      <li>JavaScript Challenge Ongoing</li>
+      <li>React Challenge Coming</li>
+      <li>FullStack Challenge Coming</li>
+      <li>DataAnalysis Challenge Coming</li>
+      <li>ReactNative Challenge Coming</li>
+      <li>MachineLearning Challenge Coming</li>
+    </ul>
+  </div>
+
+  <script>
+    // Get references to elements
+    const h1 = document.querySelector('h1');
+    const h2 = document.querySelector('h2');
+    const listItems = document.querySelectorAll('ul li');
+
+    // Function to change the year color every second
+    setInterval(() => {
+      h1.style.color = getRandomColor();
+    }, 1000);
+
+    // Function to change the background color of date and time every second
+    setInterval(() => {
+      h2.style.backgroundColor = getRandomColor();
+    }, 1000);
+
+    // Assign colors to list items based on their content
+    listItems.forEach((item) => {
+      if (item.textContent.includes('Done')) {
+        item.style.backgroundColor = 'green'; // Completed challenge
+      } else if (item.textContent.includes('Ongoing')) {
+        item.style.backgroundColor = 'yellow'; // Ongoing challenge
+      } else if (item.textContent.includes('Coming')) {
+        item.style.backgroundColor = 'red'; // Coming challenges
+      }
+    });
+
+    // Utility function to generate a random color
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>

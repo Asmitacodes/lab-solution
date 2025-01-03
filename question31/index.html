@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Marker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .number-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .number {
+            margin: 5px;
+            padding: 10px;
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .even {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .odd {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        .prime {
+            background-color: #cff4fc;
+            color: #055160;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Marker</h1>
+    <p>Enter a number to generate the list:</p>
+    <input type="number" id="userInput" placeholder="Enter a number">
+    <button onclick="generateNumbers()">Generate</button>
+    <div class="number-container" id="numberContainer"></div>
+
+    <script>
+        // Function to check if a number is prime
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        // Function to generate numbers and mark them
+        function generateNumbers() {
+            const userInput = document.getElementById('userInput').value;
+            const numberContainer = document.getElementById('numberContainer');
+            numberContainer.innerHTML = ''; // Clear previous numbers
+
+            if (userInput <= 0 || isNaN(userInput)) {
+                alert('Please enter a positive number.');
+                return;
+            }
+
+            for (let i = 1; i <= userInput; i++) {
+                const div = document.createElement('div');
+                div.classList.add('number');
+
+                if (isPrime(i)) {
+                    div.classList.add('prime');
+                } else if (i % 2 === 0) {
+                    div.classList.add('even');
+                } else {
+                    div.classList.add('odd');
+                }
+
+                div.textContent = i;
+                numberContainer.appendChild(div);
+            }
+        }
+    </script>
+</body>
+</html>

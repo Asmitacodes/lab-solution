@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Operations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cookie Manager</h1>
+        <div>
+            <label for="key">Key:</label>
+            <input type="text" id="key">
+        </div>
+        <div>
+            <label for="value">Value:</label>
+            <input type="text" id="value">
+        </div>
+        <button onclick="setCookie()">Set Cookie</button>
+        <button onclick="getCookie()">Get Cookie</button>
+        <button onclick="deleteCookie()">Delete Cookie</button>
+        <button onclick="deleteAllCookies()">Delete All Cookies</button>
+        <h2>All Cookies:</h2>
+        <table id="cookiesTable" border="1">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cookies will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
