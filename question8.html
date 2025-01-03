@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Effects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #effect-box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="effect-box">Effect Box</div>
+    <button onclick="$('#effect-box').hide()">Hide</button>
+    <button onclick="$('#effect-box').show()">Show</button>
+    <button onclick="$('#effect-box').toggle()">Toggle</button>
+    <button onclick="$('#effect-box').fadeIn()">Fade In</button>
+    <button onclick="$('#effect-box').fadeOut()">Fade Out</button>
+    <button onclick="$('#effect-box').fadeToggle()">Fade Toggle</button>
+    <button onclick="$('#effect-box').slideUp()">Slide Up</button>
+    <button onclick="$('#effect-box').slideDown()">Slide Down</button>
+    <button onclick="$('#effect-box').slideToggle()">Slide Toggle</button>
+    <button onclick="$('#effect-box').animate({width: '300px', height: '300px'}, 'slow')">Animate</button>
+</body>
+</html>

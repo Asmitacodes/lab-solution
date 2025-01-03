@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display BCA Description</title>
+    <script>
+        function loadBCAContent() {
+            // Create an XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Define the request type and the file to fetch
+            xhr.open("GET", "bca.txt", true);
+
+            // Define what happens when the request is successful
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Display the content in the target div
+                    document.getElementById("bca-content").innerText = xhr.responseText;
+                } else {
+                    // Handle errors (e.g., file not found)
+                    document.getElementById("bca-content").innerText = "Error loading content.";
+                }
+            };
+
+            // Define what happens in case of an error during the request
+            xhr.onerror = function () {
+                document.getElementById("bca-content").innerText = "An error occurred while loading the content.";
+            };
+
+            // Send the request
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>BCA Description</h1>
+    <button onclick="loadBCAContent()">Load Content</button>
+    <div id="bca-content" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
+        <!-- Content from bca.txt will appear here -->
+    </div>
+</body>
+</html>

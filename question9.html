@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Registration Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .error {
+            color: red;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter name">
+                <div class="error" id="name-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+                <div class="error" id="username-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email">
+                <div class="error" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+                <div class="error" id="password-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" placeholder="Enter phone number">
+                <div class="error" id="phone-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <input type="radio" name="gender" value="male"> Male
+                <input type="radio" name="gender" value="female"> Female
+                <div class="error" id="gender-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course</label>
+                <select id="course">
+                    <option value="">Select course</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                </select>
+                <div class="error" id="course-error"></div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" id="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#submit-btn').click(function () {
+                let isValid = true;
+                $('.error').text('');
+
+                // Name Validation
+                const name = $('#name').val();
+                if (!name || /\d/.test(name)) {
+                    isValid = false;
+                    $('#name-error').text('Invalid name.');
+                }
+
+                // Username Validation
+                const username = $('#username').val();
+                if (!username || /\W/.test(username)) {
+                    isValid = false;
+                    $('#username-error').text('No spaces or special characters.');
+                }
+
+                // Email Validation
+                const email = $('#email').val();
+                if (!email || !email.includes('@')) {
+                    isValid = false;
+                    $('#email-error').text('Invalid email.');
+                }
+
+                // Password Validation
+                const password = $('#password').val();
+                const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                if (!password || !passwordPattern.test(password)) {
+                    isValid = false;
+                    $('#password-error').text('Weak password.');
+                }
+
+                // Phone Validation
+                const phone = $('#phone').val();
+                if (!phone || !/^(98|97|96)\d{8}$/.test(phone)) {
+                    isValid = false;
+                    $('#phone-error').text('Invalid phone number.');
+                }
+
+                // Gender Validation
+                if (!$('input[name="gender"]:checked').val()) {
+                    isValid = false;
+                    $('#gender-error').text('Select gender.');
+                }
+
+                // Course Validation
+                if (!$('#course').val()) {
+                    isValid = false;
+                    $('#course-error').text('Select a course.');
+                }
+
+                if (isValid) {
+                    alert('Form submitted successfully!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

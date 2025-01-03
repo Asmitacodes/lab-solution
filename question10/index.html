@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form id="login-form">
+        <label>User ID: <input type="text" id="userid" /></label><br>
+        <label>Password: <input type="password" id="password" /></label><br>
+        <button type="button" id="login-btn">Login</button>
+    </form>
+    <div id="response-message"></div>
+    <script>
+        $(document).ready(function () {
+            $('#login-btn').click(function () {
+                const userid = $('#userid').val();
+                const password = $('#password').val();
+
+                $.ajax({
+                    url: 'login.php',
+                    type: 'POST',
+                    data: { userid, password },
+                    success: function (response) {
+                        if (response === 'success') {
+                            $('#response-message').text('Welcome!').show();
+                            $('#login-form').hide();
+                        } else {
+                            $('#response-message').text('Invalid credentials, try again.').show();
+                        }
+                    },
+                    error: function () {
+                        $('#response-message').text('An error occurred.').show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
