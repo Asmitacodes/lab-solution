@@ -5,36 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 350px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <form id="login-form">
-        <label>User ID: <input type="text" id="userid" /></label><br>
-        <label>Password: <input type="password" id="password" /></label><br>
-        <button type="button" id="login-btn">Login</button>
-    </form>
-    <div id="response-message"></div>
+    <div class="form-container">
+        <h1>Login Form</h1>
+        <form id="loginForm">
+            <input type="text" id="userid" name="userid" placeholder="User ID" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
     <script>
         $(document).ready(function () {
-            $('#login-btn').click(function () {
-                const userid = $('#userid').val();
-                const password = $('#password').val();
+            $("#loginForm").submit(function (e) {
+                e.preventDefault();
 
-                $.ajax({
-                    url: 'login.php',
-                    type: 'POST',
-                    data: { userid, password },
-                    success: function (response) {
-                        if (response === 'success') {
-                            $('#response-message').text('Welcome!').show();
-                            $('#login-form').hide();
-                        } else {
-                            $('#response-message').text('Invalid credentials, try again.').show();
-                        }
-                    },
-                    error: function () {
-                        $('#response-message').text('An error occurred.').show();
-                    }
-                });
+                const userId = $("#userid").val().trim();
+                const password = $("#password").val().trim();
+
+                if (userId === "" || password === "") {
+                    $("#message").text("All fields are required.").addClass("error").removeClass("success");
+                    return;
+                }
+
+                // Simulate AJAX
+                if (userId === "admin" && password === "password123") {
+                    $("#message").text("Welcome!").addClass("success").removeClass("error");
+                    $("#loginForm").hide();
+                } else {
+                    $("#message").text("Invalid credentials, please try again.").addClass("error").removeClass("success");
+                }
             });
         });
     </script>

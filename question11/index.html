@@ -3,41 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display BCA Description</title>
-    <script>
-        function loadBCAContent() {
-            // Create an XMLHttpRequest object
-            const xhr = new XMLHttpRequest();
-
-            // Define the request type and the file to fetch
-            xhr.open("GET", "bca.txt", true);
-
-            // Define what happens when the request is successful
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    // Display the content in the target div
-                    document.getElementById("bca-content").innerText = xhr.responseText;
-                } else {
-                    // Handle errors (e.g., file not found)
-                    document.getElementById("bca-content").innerText = "Error loading content.";
-                }
-            };
-
-            // Define what happens in case of an error during the request
-            xhr.onerror = function () {
-                document.getElementById("bca-content").innerText = "An error occurred while loading the content.";
-            };
-
-            // Send the request
-            xhr.send();
+    <title>AJAX File Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
         }
-    </script>
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #content {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
-    <h1>BCA Description</h1>
-    <button onclick="loadBCAContent()">Load Content</button>
-    <div id="bca-content" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
-        <!-- Content from bca.txt will appear here -->
+    <div class="container">
+        <h1>BCA File Content</h1>
+        <p>Click the button below to load the content of <strong>bca.txt</strong> file:</p>
+        <button id="loadFile">Load Content</button>
+        <div id="content"></div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#loadFile").click(function () {
+                // AJAX request to fetch the content of bca.txt
+                $.ajax({
+                    url: "bca.txt", // Path to the file
+                    method: "GET",
+                    success: function (data) {
+                        // Display the content inside the div
+                        $("#content").html(data);
+                    },
+                    error: function () {
+                        // Display an error message if the file cannot be loaded
+                        $("#content").html("Error loading the file. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

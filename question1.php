@@ -1,9 +1,12 @@
 <?php
+
+// Interface definition
 interface Vehicle {
     public function startEngine();
     public function stopEngine();
 }
 
+// Base Car class
 class Car implements Vehicle {
     private $make;
     private $model;
@@ -15,14 +18,7 @@ class Car implements Vehicle {
         $this->year = $year;
     }
 
-    public function start() {
-        echo "Car started.\n";
-    }
-
-    public function displayInfo() {
-        echo "Make: $this->make, Model: $this->model, Year: $this->year\n";
-    }
-
+    // Getter and Setter for make
     public function getMake() {
         return $this->make;
     }
@@ -31,6 +27,7 @@ class Car implements Vehicle {
         $this->make = $make;
     }
 
+    // Getter and Setter for model
     public function getModel() {
         return $this->model;
     }
@@ -39,12 +36,22 @@ class Car implements Vehicle {
         $this->model = $model;
     }
 
+    // Getter and Setter for year
     public function getYear() {
         return $this->year;
     }
 
     public function setYear($year) {
         $this->year = $year;
+    }
+
+    // Methods
+    public function start() {
+        echo "Car started.\n";
+    }
+
+    public function displayInfo() {
+        echo "Make: $this->make, Model: $this->model, Year: $this->year\n";
     }
 
     public function startEngine() {
@@ -56,10 +63,11 @@ class Car implements Vehicle {
     }
 
     public function getDescription() {
-        return "Car: $this->make $this->model, Year: $this->year";
+        return "This is a car.";
     }
 }
 
+// ElectricCar class extending Car
 class ElectricCar extends Car {
     private $batteryCapacity;
 
@@ -69,10 +77,22 @@ class ElectricCar extends Car {
     }
 
     public function charge() {
-        echo "Electric car is charging.\n";
+        echo "Car is charging. Battery capacity: $this->batteryCapacity kWh.\n";
     }
 
     public function getDescription() {
-        return parent::getDescription() . ", Battery Capacity: $this->batteryCapacity kWh";
+        return "This is an electric car with a battery capacity of $this->batteryCapacity kWh.";
     }
 }
+
+// Usage
+$car = new Car("Toyota", "Camry", 2022);
+$car->start();
+$car->displayInfo();
+echo $car->getDescription() . "\n";
+
+$electricCar = new ElectricCar("Tesla", "Model S", 2023, 100);
+$electricCar->start();
+$electricCar->displayInfo();
+$electricCar->charge();
+echo $electricCar->getDescription() . "\n";

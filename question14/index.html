@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Country-City Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Country-City Selector</h1>
+
+        <label for="country">Select Country:</label>
+        <select id="country">
+            <option value="">--Select Country--</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="India">India</option>
+        </select>
+
+        <label for="city">Select City:</label>
+        <select id="city">
+            <option value="">--Select City--</option>
+        </select>
+    </div>
+
+    <script>
+        document.getElementById("country").addEventListener("change", function () {
+            const country = this.value;
+            const cityDropdown = document.getElementById("city");
+
+            // Clear existing cities
+            cityDropdown.innerHTML = '<option value="">--Select City--</option>';
+
+            if (country === "") {
+                return; // Exit if no country is selected
+            }
+
+            // Create XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Define the callback function
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const cities = JSON.parse(xhr.responseText);
+
+                    // Populate city dropdown
+                    cities.forEach(city => {
+                        const option = document.createElement("option");
+                        option.value = city;
+                        option.textContent = city;
+                        cityDropdown.appendChild(option);
+                    });
+                }
+            };
+
+            // Configure and send the AJAX request
+            xhr.open("POST", "get_cities.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("country=" + encodeURIComponent(country));
+        });
+    </script>
+</body>
+</html>

@@ -1,11 +1,12 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root"; // Adjust based on your setup
-$password = "";     // Adjust based on your setup
+$host = "localhost";
+$username = "root"; // Replace with your DB username
+$password = ""; // Replace with your DB password
 $dbname = "user_database";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Connect to the database
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -13,19 +14,23 @@ if ($conn->connect_error) {
 }
 
 // Get the username from POST request
-if (isset($_POST['username'])) {
-    $user = $conn->real_escape_string($_POST['username']);
+$inputUsername = $_POST['username'] ?? '';
 
-    // Query to check if username exists
-    $query = "SELECT * FROM users WHERE username = '$user'";
-    $result = $conn->query($query);
+// Prepare and execute the query
+$sql = "SELECT username FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $inputUsername);
+$stmt->execute();
+$stmt->store_result();
 
-    if ($result->num_rows > 0) {
-        echo "not available";
-    } else {
-        echo "available";
-    }
+// Check if username exists
+if ($stmt->num_rows > 0) {
+    echo "not available";
+} else {
+    echo "available";
 }
 
+// Close the database connection
+$stmt->close();
 $conn->close();
 ?>
