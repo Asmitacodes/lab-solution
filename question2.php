@@ -1,7 +1,14 @@
 <?php
-// Question 2: Calculate the area of a circle
-define("PI", 3.14159); // Define a constant for the value of PI
-$radius = 5; // Define the radius of the circle
-$area = PI * $radius * $radius; // Calculate the area using the formula PI*r^2
-echo "Area of Circle: $area"; // Display the calculated area
+// Define a constant for PI
+define("PI", 3.14159);
+
+// Input: Radius of the circle
+$radius = 5; // Example radius
+
+// Calculate the area using the formula: Area = PI * radius^2
+$area = PI * $radius * $radius;
+
+// Output the area
+echo "The area of the circle is: $area"; // Displays the calculated area
 ?>
+

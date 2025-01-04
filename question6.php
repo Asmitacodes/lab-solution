@@ -1,7 +1,9 @@
 <?php
-// Question 6: Convert age in years to days
+// Function to convert age in years to days
 function ageInDays($age) {
-    return $age * 365; // Multiply age in years by 365 to get days
+    return $age * 365; // Multiply age by 365 (ignoring leap years)
 }
-echo ageInDays(25); // Test the function with age 25
+
+// Example: Call the function
+echo ageInDays(25); // Outputs: 9125
 ?>

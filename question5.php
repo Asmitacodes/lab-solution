@@ -1,7 +1,9 @@
 <?php
-// Question 5: Calculate the area of a triangle
-function calculateTriangleArea($base, $height) {
-    return 0.5 * $base * $height; // Use the formula (base * height) / 2
+// Function to calculate the area of a triangle
+function triangleArea($base, $height) {
+    return 0.5 * $base * $height; // Formula: 1/2 * base * height
 }
-echo calculateTriangleArea(10, 15); // Test the function with base 10 and height 15
+
+// Example: Call the function
+echo triangleArea(10, 5); // Outputs: 25
 ?>

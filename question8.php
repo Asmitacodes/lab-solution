@@ -1,32 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<!-- Form for inputting the number of animals -->
+<form method="POST">
+    Chickens: <input type="number" name="chickens" required><br>
+    Cows: <input type="number" name="cows" required><br>
+    Pigs: <input type="number" name="pigs" required><br>
+    <input type="submit" value="Calculate">
+</form>
+
 <?php
-if (php_sapi_name() == "cli") {
-    // Prompt the user for the number of chickens
-    $chickens = readline("Enter the number of chickens: ");
-    // Validate the input
-    if (!is_numeric($chickens)) {
-        echo "Error: Please provide a numeric value for chickens.\n";
-        exit(1);
-    }
-
-    // Prompt the user for the number of cows
-    $cows = readline("Enter the number of cows: ");
-    // Validate the input
-    if (!is_numeric($cows)) {
-        echo "Error: Please provide a numeric value for cows.\n";
-        exit(1);
-    }
-
-    // Prompt the user for the number of pigs
-    $pigs = readline("Enter the number of pigs: ");
-    // Validate the input
-    if (!is_numeric($pigs)) {
-        echo "Error: Please provide a numeric value for pigs.\n";
-        exit(1);
-    }
+// Check if the form is submitted
+if (!empty($_POST)) { // Use !empty($_POST) to check if form data is submitted
+    // Safely retrieve form data
+    $chickens = isset($_POST['chickens']) ? intval($_POST['chickens']) : 0;
+    $cows = isset($_POST['cows']) ? intval($_POST['cows']) : 0;
+    $pigs = isset($_POST['pigs']) ? intval($_POST['pigs']) : 0;
 
     // Calculate total legs
-    $legs = $chickens * 2 + $cows * 4 + $pigs * 4;
-    echo "Total legs: $legs\n";
-} else {
-    echo "This script is intended for command-line use only.\n";
+    $total_legs = ($chickens * 2) + ($cows * 4) + ($pigs * 4);
+
+    // Output the total legs
+    echo "Total legs: $total_legs";
 }
+?>
+</body>
+</html>

@@ -1,7 +1,9 @@
 <?php
-// Question 4: Return the sum of two numbers
+// Function to calculate the sum of two numbers
 function sum($a, $b) {
     return $a + $b; // Add the two numbers and return the result
 }
-echo sum(5, 10); // Test the function with 5 and 10
+
+// Example: Call the function
+echo sum(3, 7); // Outputs: 10
 ?>

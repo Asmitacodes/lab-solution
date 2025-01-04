@@ -1,7 +1,9 @@
 <?php
-// Question 10: Compare the lengths of two strings
+// Function to compare the lengths of two strings
 function compareStringLength($str1, $str2) {
-    return strlen($str1) === strlen($str2); // Check if lengths of both strings are equal
+    return strlen($str1) === strlen($str2); // Compare lengths using strlen()
 }
-echo compareStringLength("hello", "world") ? "True" : "False"; // Test the function with "hello" and "world"
+
+// Example: Call the function
+echo compareStringLength("Hello", "World") ? "True" : "False"; // Outputs: True
 ?>

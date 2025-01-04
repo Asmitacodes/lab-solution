@@ -1,21 +1,26 @@
 <?php
-// Question 1a: Create variables with different datatypes
-$intVar = 10; // Integer variable
-$floatVar = 10.5; // Float variable
-$stringVar = "Hello"; // String variable
-$arrayVar = array(1, 2, 3); // Array variable
+// Declare variables of different datatypes
+$stringVar = "Hello World"; // String datatype
+$intVar = 42; // Integer datatype
+$floatVar = 3.14; // Float datatype
+$boolVar = true; // Boolean datatype
+$arrayVar = ["Apple", "Banana", "Cherry"]; // Array datatype
 
-// Question 1a: Print all the data using echo and print
-echo $intVar; 
-print $floatVar; 
+// Print using echo and print
+echo $stringVar . "\n"; // Outputs the string value
+print($intVar . "\n"); // Outputs the integer value
+echo $floatVar . "\n"; // Outputs the float value
+echo ($boolVar ? "True\n" : "False\n"); // Outputs True or False based on boolean value
 
-// Question 1b: Display content of array using print_r and var_dump
-print_r($arrayVar); 
-var_dump($stringVar); 
+// Display array content using print_r
+print_r($arrayVar); // Outputs the array in a readable format
 
-// Question 1c: Display result of checking data types
-echo is_int($intVar) ? 'Integer' : 'Not an Integer'; 
-echo is_float($floatVar) ? 'Float' : 'Not a Float'; 
-echo is_string($stringVar) ? 'String' : 'Not a String';
-echo is_array($arrayVar) ? 'Array' : 'Not an Array'; 
+// Display detailed information about the array using var_dump
+var_dump($arrayVar); // Outputs data type and value of each array element
+
+// Check and display the datatype of variables
+var_dump(is_string($stringVar)); // Checks if the variable is a string
+var_dump(is_int($intVar)); // Checks if the variable is an integer
+var_dump(is_float($floatVar)); // Checks if the variable is a float
+var_dump(is_bool($boolVar)); // Checks if the variable is a boolean
 ?>

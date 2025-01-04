@@ -1,7 +1,9 @@
 <?php
-// Question 7: Calculate power using voltage and current
+// Function to calculate power using voltage and current
 function calculatePower($voltage, $current) {
-    return $voltage * $current; // Use the formula power = voltage * current
+    return $voltage * $current; // Formula: Power = Voltage × Current
 }
-echo calculatePower(220, 10); // Test the function with voltage 220V and current 10A
+
+// Example: Call the function
+echo calculatePower(220, 10); // Outputs: 2200
 ?>
